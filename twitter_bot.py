@@ -34,7 +34,7 @@ class IntelligentTwitterBot:
         """Setup Twitter API"""
         try:
             if not all([self.api_key, self.api_secret, self.access_token, 
-                       self.access_token_secret, self.bearer_token]):
+                       self.access_token_secret, self.bearer_token, self.api_news_key]):
                 raise ValueError("Missing Twitter API credentials")
             
             self.client = tweepy.Client(

@@ -29,8 +29,7 @@ class IntelligentTwitterBot:
         
         self.setup_twitter_api()
         logging.info("🧠 Intelligent Twitter Bot initialized!")
-    
-    def setup_twitter_api(self):
+def setup_twitter_api(self):
     """Setup Twitter API"""
     try:
         if not all([self.api_key, self.api_secret, self.access_token, 

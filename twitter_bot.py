@@ -51,8 +51,7 @@ class IntelligentTwitterBot:
         except Exception as e:
             logging.error(f"❌ Twitter API error: {e}")
             raise
-    
-      def search_trending_topics(self):
+    def search_trending_topics(self):
         """Fetch real news headlines, add mirch-masala, and humanoid opinions"""
         url = f"https://newsapi.org/v2/top-headlines?country=in&pageSize=5&apiKey={api_key}"
 

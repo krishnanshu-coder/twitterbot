@@ -29,28 +29,29 @@ class IntelligentTwitterBot:
         
         self.setup_twitter_api()
         logging.info("🧠 Intelligent Twitter Bot initialized!")
-def setup_twitter_api(self):
-    """Setup Twitter API"""
-    try:
-        if not all([self.api_key, self.api_secret, self.access_token, 
-                   self.access_token_secret, self.bearer_token]):
-            raise ValueError("Missing Twitter API credentials")
-        
-        # Remove consumer_news from here - it's not a valid parameter
-        self.client = tweepy.Client(
-            bearer_token=self.bearer_token,
-            consumer_key=self.api_key,
-            consumer_secret=self.api_secret,
-            access_token=self.access_token,
-            access_token_secret=self.access_token_secret,
-            wait_on_rate_limit=True
-        )
-        
-        logging.info("✅ Twitter API connected")
-        
-    except Exception as e:
-        logging.error(f"❌ Twitter API error: {e}")
-        raise
+    
+    def setup_twitter_api(self):
+        """Setup Twitter API"""
+        try:
+            if not all([self.api_key, self.api_secret, self.access_token, 
+                       self.access_token_secret, self.bearer_token]):
+                raise ValueError("Missing Twitter API credentials")
+            
+            self.client = tweepy.Client(
+                bearer_token=self.bearer_token,
+                consumer_key=self.api_key,
+                consumer_secret=self.api_secret,
+                access_token=self.access_token,
+                access_token_secret=self.access_token_secret,
+                wait_on_rate_limit=True
+            )
+            
+            logging.info("✅ Twitter API connected")
+            
+        except Exception as e:
+            logging.error(f"❌ Twitter API error: {e}")
+            raise
+
     def search_trending_topics(self):
         """Fetch real news headlines, add mirch-masala, and humanoid opinions"""
         url = f"https://newsapi.org/v2/top-headlines?country=in&pageSize=5&apiKey={self.api_news_key}"
@@ -71,7 +72,7 @@ def setup_twitter_api(self):
                 spices = ["🔥 Breaking!", "💥 Kya baat!", "😲 OMG!", "🌟 Masala Alert:"]
                 opinions = [
                     "Honestly, this feels like a big game-changer! 🤔",
-                    "Not gonna lie, that’s surprising even for me. 😮",
+                    "Not gonna lie, that's surprising even for me. 😮",
                     "Kinda expected, but still spicy! 🌶️",
                     "If this continues, things could get wild. 😏"
                 ]
@@ -90,6 +91,8 @@ def setup_twitter_api(self):
         except Exception as e:
             logging.error(f"💥 Error fetching news: {e}")
             return {"key_insights": [], "actionable_steps": [], "tools_mentioned": [], "stats": ""}
+
+    # ... rest of your methods stay the same
 
     
     def generate_intelligent_content(self, research_data, post_time):

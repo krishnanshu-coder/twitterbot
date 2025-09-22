@@ -22,7 +22,7 @@ class IntelligentTwitterBot:
         self.access_token = os.getenv('TWITTER_ACCESS_TOKEN')
         self.access_token_secret = os.getenv('TWITTER_ACCESS_TOKEN_SECRET')
         self.bearer_token = os.getenv('TWITTER_BEARER_TOKEN')
-        api_key = os.getenv("NEWSAPI_KEY")
+        self.api_news_key = os.getenv('NEWSAPI_KEY')
         
         # OpenAI API for content generation
         self.openai_api_key = os.getenv('OPENAI_API_KEY')
@@ -43,6 +43,7 @@ class IntelligentTwitterBot:
                 consumer_secret=self.api_secret,
                 access_token=self.access_token,
                 access_token_secret=self.access_token_secret,
+                consumer_news=self.api_news_key,
                 wait_on_rate_limit=True
             )
             
@@ -53,7 +54,7 @@ class IntelligentTwitterBot:
             raise
     def search_trending_topics(self):
         """Fetch real news headlines, add mirch-masala, and humanoid opinions"""
-        url = f"https://newsapi.org/v2/top-headlines?country=in&pageSize=5&apiKey={api_key}"
+        url = f"https://newsapi.org/v2/top-headlines?country=in&pageSize=5&apiKey={consumer_news}"
 
         try:
             response = requests.get(url)
